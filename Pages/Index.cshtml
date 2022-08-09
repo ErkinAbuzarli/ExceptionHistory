@@ -1,0 +1,107 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    var today = DateTime.Today.ToString("yyyy-MM-dd");
+}
+
+<div class="row ">
+  <div class=" col-4">
+    <label for="exampleFormControlInput1" class="form-label"
+      >Project Name</label
+    >
+    <input
+      type="email"
+      class="form-control"
+      id="exampleFormControlInput1"
+    />
+  </div>
+    <div class="col-4">
+    <label for="exampleDataList" class="form-label">Catagory</label>
+    <input
+      class="form-control"
+      list="datalistOptions"
+      id="exampleDataList"
+      placeholder="Tap to get hint"
+    />
+    <datalist id="datalistOptions">
+    @foreach (var item in Model.Records){
+
+      <option value="@item.Catagory" />
+    }
+    </datalist>
+  </div>
+  <div class="col-4">
+    <label for="start" class="form-label">Date</label>
+    <input
+      class="form-control"
+      type="date"
+      id="start"
+      name="trip-start"
+      value="@today"
+      min="2018-01-01"
+      max="@today"
+    />
+  </div>
+
+</div>
+
+<div class="mb-md-3 mt-md-3 mx-auto">
+  <label for="exampleFormControlTextarea1" class="form-label"
+    >Note</label
+  >
+  <textarea
+    class="form-control"
+    id="exampleFormControlTextarea1"
+    rows="3"
+  ></textarea>
+</div>
+
+  <div class="col-md-4 mx-auto mb-3">
+    <button type="button" class="btn btn-primary btn-block">Add New Exception</button>
+  </div>
+  
+
+   <table class="table">     
+   <thead>
+        <tr>
+            <th >
+                @Html.DisplayNameFor(model => model.Records[0].Id)
+            </th>
+            <th >
+                @Html.DisplayNameFor(model => model.Records[0].ProjectName)
+            </th> 
+            <th >
+                @Html.DisplayNameFor(model => model.Records[0].DateOfException)
+            </th>
+            <th >
+                @Html.DisplayNameFor(model => model.Records[0].Catagory)
+            </th>
+            <th >
+                @Html.DisplayNameFor(model => model.Records[0].Note)
+            </th>
+        </tr>
+    </thead>
+   <tbody>
+@foreach (var item in Model.Records) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfException)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Catagory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
